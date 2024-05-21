@@ -4,62 +4,58 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+    private static boolean[][] galaxy;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-            int[] dimestions = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-            int x = dimestions[0];
-            int y = dimestions[1];
+        int[] dimensions = parseCoordinates(scanner.nextLine());
 
-            int[][] matrix = new int[x][y];
+        galaxy = new boolean[dimensions[0]][dimensions[1]];
 
-            int value = 0;
-            for (int i = 0; i < x; i++)
-            {
-                for (int j = 0; j < y; j++)
-                {
-                    matrix[i][j] = value++;
+        long collectedStars = 0;
+
+        String input;
+
+        while (!"Let the Force be with you".equals(input = scanner.nextLine())) {
+            int[] jediLocation = parseCoordinates(input);
+            int[] sithLocation = parseCoordinates(scanner.nextLine());
+
+            travelTheGalaxy("sith", sithLocation[0], sithLocation[1]);
+
+            collectedStars += travelTheGalaxy("jedi", jediLocation[0], jediLocation[1]);
+        }
+
+        System.out.println(collectedStars);
+    }
+
+    private static int travelTheGalaxy(String player, int x, int y) {
+        boolean isJedi = "jedi".equals(player);
+        boolean yIsValid = isJedi ? y < galaxy[0].length : y >= 0;
+
+        int stars = 0;
+
+        while (x >= 0 && yIsValid) {
+            if (isOnTarget(x, y)) {
+                if (isJedi && !galaxy[x][y]) {
+                    stars += (x * galaxy[x].length + y);
+                } else {
+                    galaxy[x][y] = true;
                 }
             }
 
-            String command = scanner.nextLine();
-            long sum = 0;
-            while (!command.equals("Let the Force be with you"))
-            {
-                int[] ivoS = Arrays.stream(command.split(" ")).mapToInt(Integer::parseInt).toArray();
-                int[] evil = Arrays.stream(scanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-                int xE = evil[0];
-                int yE = evil[1];
+            x--;
+            y = isJedi ? y + 1 : y - 1;
+        }
 
-                while (xE >= 0 && yE >= 0)
-                {
-                    if (xE >= 0 && xE < matrix.length && yE >= 0 && yE < matrix[0].length)
-                    {
-                        matrix[xE] [yE] = 0;
-                    }
-                    xE--;
-                    yE--;
-                }
+        return stars;
+    }
 
-                int xI = ivoS[0];
-                int yI = ivoS[1];
+    private static boolean isOnTarget(int x, int y) {
+        return (x >= 0 && x < galaxy.length) && (y >= 0 && y < galaxy[x].length);
+    }
 
-                while (xI >= 0 && yI < matrix[1].length)
-                {
-                    if (xI >= 0 && xI < matrix.length && yI >= 0 && yI < matrix[0].length)
-                    {
-                        sum += matrix[xI][yI];
-                    }
-
-                    yI++;
-                    xI--;
-                }
-
-                command = scanner.nextLine();
-            }
-
-        System.out.println(sum);
-
-
+    private static int[] parseCoordinates(String input) {
+        return Arrays.stream(input.split("\\s+")).mapToInt(Integer::parseInt).toArray();
     }
 }
