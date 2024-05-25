@@ -7,41 +7,35 @@ public class Pizza {
     private String name;
     private Dough dough;
     private List<Topping> toppings;
-    private int capacity;
 
     public Pizza(String name, int toppings) {
         this.setName(name);
         this.setToppings(toppings);
     }
 
-
     public String getName() {
         return this.name;
     }
 
     public void setDough(Dough dough) {
-        if (dough != null) {
-            this.dough = dough;
-        }
-    }
+        Validator.validateNotNull(dough);
 
-    public boolean hasDough() {
-        return this.dough != null;
+        this.dough = dough;
     }
-
 
     public void addTopping(Topping topping) {
-        if (topping != null && this.toppings.size() < this.capacity) {
-            this.toppings.add(topping);
-        }
+        Validator.validateNotNull(topping);
+        Validator.validateNumberOfToppings(this.toppings.size() + 1);
+
+        this.toppings.add(topping);
     }
 
     public double getOverallCalories() {
-        double doughCal = this.hasDough() ? this.dough.calculateCalories() : 0;
+        Validator.validateNotNull(this.dough);
 
-        return doughCal + this.toppings.stream().mapToDouble(Topping::calculateCalories).sum();
+        return this.dough.calculateCalories()
+                + this.toppings.stream().mapToDouble(Topping::calculateCalories).sum();
     }
-
 
     @Override
     public String toString() {
@@ -58,6 +52,5 @@ public class Pizza {
         Validator.validateNumberOfToppings(count);
 
         this.toppings = new ArrayList<>();
-        this.capacity = count;
     }
 }

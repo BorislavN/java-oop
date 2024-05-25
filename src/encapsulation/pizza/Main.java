@@ -25,9 +25,7 @@ public class Main {
                 pizza.addTopping(new Topping(toppingData[1], Double.parseDouble(toppingData[2])));
             }
 
-            if (pizza.hasDough()) {
-                System.out.println(pizza);
-            }
+            System.out.println(pizza);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

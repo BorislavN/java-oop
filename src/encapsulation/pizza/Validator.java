@@ -1,6 +1,11 @@
 package encapsulation.pizza;
 
 public class Validator {
+    public static<T> void validateNotNull(T value){
+        if (value == null) {
+            throw  new IllegalArgumentException("Value is null!");
+        }
+    }
     public static void validateDoughWeight(double weight) {
         if (weight < 1 || weight > 200) {
             throw new IllegalArgumentException("Dough weight should be in the range [1..200].");
