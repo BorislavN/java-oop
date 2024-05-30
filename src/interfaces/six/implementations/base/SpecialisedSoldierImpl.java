@@ -1,6 +1,7 @@
-package interfaces.six.implementations;
+package interfaces.six.implementations.base;
 
 import interfaces.six.enumerations.Corps;
+import interfaces.six.implementations.PrivateImpl;
 import interfaces.six.interfaces.SpecialisedSoldier;
 
 public abstract class SpecialisedSoldierImpl extends PrivateImpl implements SpecialisedSoldier {

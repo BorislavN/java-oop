@@ -1,11 +1,12 @@
 package interfaces.six.implementations;
 
+import interfaces.six.implementations.base.SoldierImpl;
 import interfaces.six.interfaces.Private;
 
 public class PrivateImpl extends SoldierImpl implements Private {
     private final double salary;
 
-    protected PrivateImpl(int id, String firstName, String lastName, double salary) {
+    public PrivateImpl(int id, String firstName, String lastName, double salary) {
         super(id, firstName, lastName);
         this.salary = salary;
     }

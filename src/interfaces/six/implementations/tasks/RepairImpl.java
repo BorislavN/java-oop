@@ -1,4 +1,4 @@
-package interfaces.six.implementations;
+package interfaces.six.implementations.tasks;
 
 import interfaces.six.interfaces.Repair;
 

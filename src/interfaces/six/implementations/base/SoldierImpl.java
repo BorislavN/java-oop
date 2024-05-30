@@ -1,4 +1,4 @@
-package interfaces.six.implementations;
+package interfaces.six.implementations.base;
 
 import interfaces.six.interfaces.Soldier;
 

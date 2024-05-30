@@ -1,5 +1,6 @@
 package interfaces.six.implementations;
 
+import interfaces.six.implementations.comparator.PrivateComparator;
 import interfaces.six.interfaces.LieutenantGeneral;
 import interfaces.six.interfaces.Private;
 
@@ -11,7 +12,7 @@ import java.util.TreeSet;
 public class LieutenantGeneralImpl extends PrivateImpl implements LieutenantGeneral {
     private final Set<Private> privates;
 
-    protected LieutenantGeneralImpl(int id, String firstName, String lastName, double salary) {
+    public LieutenantGeneralImpl(int id, String firstName, String lastName, double salary) {
         super(id, firstName, lastName, salary);
         this.privates = new TreeSet<>(new PrivateComparator());
     }

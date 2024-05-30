@@ -1,4 +1,4 @@
-package interfaces.six.implementations;
+package interfaces.six.implementations.comparator;
 
 import interfaces.six.interfaces.Private;
 

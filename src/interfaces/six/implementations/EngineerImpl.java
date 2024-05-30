@@ -1,5 +1,6 @@
 package interfaces.six.implementations;
 
+import interfaces.six.implementations.base.SpecialisedSoldierImpl;
 import interfaces.six.interfaces.Engineer;
 import interfaces.six.interfaces.Repair;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 public class EngineerImpl extends SpecialisedSoldierImpl implements Engineer {
     protected final Set<Repair> repairs;
 
-    protected EngineerImpl(int id, String firstName, String lastName, double salary, String corps) {
+    public EngineerImpl(int id, String firstName, String lastName, double salary, String corps) {
         super(id, firstName, lastName, salary, corps);
         this.repairs = new LinkedHashSet<>();
     }

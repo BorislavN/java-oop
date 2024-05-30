@@ -1,5 +1,6 @@
 package interfaces.six.implementations;
 
+import interfaces.six.implementations.base.SpecialisedSoldierImpl;
 import interfaces.six.interfaces.Commando;
 import interfaces.six.interfaces.Mission;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 public class CommandoImpl extends SpecialisedSoldierImpl implements Commando {
     private final Set<Mission> missions;
 
-    protected CommandoImpl(int id, String firstName, String lastName, double salary, String corps) {
+    public CommandoImpl(int id, String firstName, String lastName, double salary, String corps) {
         super(id, firstName, lastName, salary, corps);
         this.missions = new LinkedHashSet<>();
     }
