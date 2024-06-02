@@ -18,6 +18,7 @@ public class MemorySaveOperation implements Operation {
         this.receivedOperand = true;
     }
 
+    //Always called after isCompleted, cannot throw null pointer
     @Override
     public int getResult() {
         return this.memory.peek();

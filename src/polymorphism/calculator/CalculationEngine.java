@@ -4,12 +4,12 @@ public class CalculationEngine {
     private int result;
     private Operation currentOperation;
 
-    public CalculationEngine() {
+    public CalculationEngine(){
         this.result = 0;
         this.currentOperation = null;
     }
 
-    public void pushNumber(int number) {
+   public void pushNumber(int number) {
         if (this.currentOperation != null) {
             currentOperation.addOperand(number);
 
@@ -23,9 +23,9 @@ public class CalculationEngine {
     }
 
     void pushOperation(Operation operation) {
-        if (operation == null) {
-            return;
-        }
+//        if(operation == null){
+//            return;
+//        }
         if (operation.isCompleted()) {
             this.pushNumber(operation.getResult());
         } else {
